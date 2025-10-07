@@ -1,0 +1,10 @@
+<% if @product.inventory_count > 0 %>
+    <p><strong class="text-danger">in stock</strong></p>
+<% else %>
+    <p><strong>out of stock</strong></p>
+    <p>Email me when available </p>
+    <%= form_with model: [@product, Subscriber.new] do |form| %>
+        <%= form.email_field :email, placeholder: "example@example.com", required: true %>
+        <%= form.submit "Notify me", class: "btn btn-primary" %>
+    <% end %>
+<% end %>

@@ -1,0 +1,87 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4 fw-bold text-primary">Products</h1>
+        <% if authenticated? %>
+          <%= link_to "New product", new_product_path, class: "btn btn-gradient btn-lg" %>
+        <% end %>
+      </div>
+
+      <!-- Color Showcase -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h3 class="mb-3">Custom Bootstrap Colors</h3>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-danger">Danger</button>
+            <button class="btn btn-warning">Warning</button>
+            <button class="btn btn-info">Info</button>
+            <button class="btn btn-sun">Sun</button>
+            <button class="btn btn-forest">Forest</button>
+            <button class="btn btn-berry">Berry</button>
+            <button class="btn btn-gradient">Gradient</button>
+          </div>
+        </div>
+      </div>
+
+      <% if @products.any? %>
+        <div class="card card-brand">
+          <div class="card-header bg-primary text-dark">
+            <h5 class="card-title mb-0">Product Inventory</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Name</th>
+                    <th>Inventory Count</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @products.each do |product| %>
+                    <tr>
+                      <td>
+                        <%= link_to product.name, product, class: "text-decoration-none fw-semibold" %>
+                      </td>
+                      <td>
+                        <% if product.inventory_count > 0 %>
+                          <span class="badge bg-success"><%= product.inventory_count %></span>
+                        <% else %>
+                          <span class="badge bg-danger">Out of Stock</span>
+                        <% end %>
+                      </td>
+                      <td class="text-nowrap">
+                        <%= link_to "Show", product, class: "btn btn-sm btn-outline-info" %>
+                        <%= link_to "Edit", edit_product_path(product), class: "btn btn-sm btn-outline-warning" %>
+                        <%= button_to "Delete",
+                          product_path(product),
+                          method: :delete,
+                          data: { turbo_confirm: "Are you sure?" },
+                          class: "btn btn-sm btn-outline-danger" %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="card card-brand text-center py-5">
+          <div class="card-body">
+            <h4 class="text-muted mb-3">No products found</h4>
+            <p class="text-muted">Get started by creating your first product!</p>
+            <% if authenticated? %>
+              <%= link_to "Create Product", new_product_path, class: "btn btn-primary btn-lg" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

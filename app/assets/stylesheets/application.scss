@@ -1,0 +1,15 @@
+// Import custom Bootstrap configuration first (this includes Bootstrap)
+@import "custom";
+@import "actiontext.css";
+
+trix-editor {
+  display: block;
+  min-height: 10rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+}
+trix-toolbar {
+  display: block;
+}
