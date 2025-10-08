@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Authentication      
+  include Authentication
 
   before_action :resume_session
   before_action :require_authentication

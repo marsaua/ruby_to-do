@@ -11,7 +11,7 @@ class TodosController < ApplicationController
     def new
         @todo = Todo.new
     end
-  
+
     def create
       @todo = current_user.todos.build(todo_params)
       if @todo.save
@@ -30,12 +30,12 @@ class TodosController < ApplicationController
             redirect_to root_path, alert: "Failed to update todo: #{@todo.errors.full_messages.to_sentence}", status: :see_other
         end
     end
-  
+
     def destroy
       @todo.destroy
       redirect_to root_path, notice: "Todo was successfully deleted.", status: :see_other
     end
-  
+
     private
     def set_todo
         @todo = current_user.todos.find(params[:id])
@@ -43,7 +43,4 @@ class TodosController < ApplicationController
     def todo_params
       params.require(:todo).permit(:title)
     end
-    
-    
-  end
-  
+end
