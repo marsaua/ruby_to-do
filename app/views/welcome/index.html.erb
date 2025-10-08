@@ -94,7 +94,7 @@
         </p>
         <p>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTodoModal">
           Create new To Do
         </button>
 
@@ -106,15 +106,14 @@
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">          
-        <%= @todos.each do |todo| %>
+        <% @todos.each do |todo| %>
           <%= render "layouts/todo_card", todo: todo %>
         <% end %>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">    
-  <%= render "todos/new" %>
-  </div>
+  <!-- Universal Todo Modal for creating new todos -->
+  <%= render "layouts/modals/todo_modal", todo: @todo, modal_id: "newTodoModal" %>
 </main>
 </body>

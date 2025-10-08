@@ -26,13 +26,12 @@
                   <button
                     type="button"
                     class="btn btn-sm btn-outline-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteTodoModal<%= todo.id %>"
                   >
-                    View
+                    Delete
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-sm btn-outline-secondary"
-                  >
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#todoModal<%= todo.id %>">
                     Edit
                   </button>
                 </div>
@@ -43,3 +42,7 @@
             </div>
           </div>
         </div>
+
+        <!-- Universal Todo Modal for editing -->
+        <%= render "layouts/modals/todo_modal", todo: todo, modal_id: "todoModal#{todo.id}" %>
+        <%= render "layouts/modals/delete_todo_modal", todo: todo, delete_todo_modal_id: "deleteTodoModal#{todo.id}" %>
