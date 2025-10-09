@@ -80,7 +80,7 @@ RUN groupadd --system --gid 1000 rails && \
 USER 1000:1000
 
 # Rails entrypoint handles db:prepare safely
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+# ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Railway exposes $PORT (commonly 8080)
 ENV PORT=8080
