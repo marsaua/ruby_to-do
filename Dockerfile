@@ -9,7 +9,7 @@ WORKDIR /rails
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential curl libpq-dev libjemalloc2 libvips \
-      nodejs npm postgresql-client tzdata && \
+      libyaml-dev nodejs npm postgresql-client tzdata && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install gems
@@ -34,6 +34,9 @@ USER rails:rails
 # Expose port
 ENV PORT=8080
 EXPOSE 8080
+
+# Entrypoint prepares the database
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start command - simple and reliable
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
