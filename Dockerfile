@@ -87,4 +87,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Start the app with Puma
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+CMD ["bash","-lc","rm -f tmp/pids/server.pid && bundle exec rails db:prepare && bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:${PORT:-8080}"]
