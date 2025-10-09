@@ -18,6 +18,9 @@ gem "jbuilder"
 
 gem "importmap-rails"
 
+gem "pg", "~> 1.5"
+
+
 
 # html
 gem "sprockets-rails"
